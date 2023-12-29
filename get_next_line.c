@@ -6,7 +6,7 @@
 /*   By: anamella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 22:04:05 by anamella          #+#    #+#             */
-/*   Updated: 2023/12/14 22:04:08 by anamella         ###   ########.fr       */
+/*   Updated: 2023/12/29 18:50:27 by anamella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*read_file(char *s, int fd)
 		if (byte == -1)
 		{
 			free(buffer);
+			if (s)
+				free(s);
 			return (0);
 		}
 		buffer[byte] = 0;
@@ -98,7 +100,10 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		if (s)
+		{
 			free(s);
+			s = 0;
+		}
 		return (0);
 	}
 	s = read_file(s, fd);
