@@ -3,7 +3,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <time.h>
-
+#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void generate_line(void)
 {
@@ -28,7 +29,7 @@ void generate_line(void)
 int main ()
 {
 	generate_line();
-	int fd =  open("file.txt", O_RDWR);
+	int fd =  open("file.txt", O_RDWR | O_CREAT | O_TRUNC);
 
 	char *s = get_next_line(fd);
 	while (s)

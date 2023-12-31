@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anamella <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 22:04:53 by anamella          #+#    #+#             */
-/*   Updated: 2023/12/29 17:57:28 by anamella         ###   ########.fr       */
+/*   Created: 2023/12/29 21:59:53 by anamella          #+#    #+#             */
+/*   Updated: 2023/12/31 17:49:50 by anamella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*read_file(char *s, int fd)
 	int		byte;
 	char	*buffer;
 
-	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	buffer = malloc(((size_t)BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (0);
 	byte = 1;
@@ -46,7 +46,7 @@ char	*ft_get_line(char *s)
 		return (0);
 	while (s[i] && s[i] != '\n')
 		i++;
-	tmp = malloc(i + 2);
+	tmp = malloc(i + 1 + (s[i] == '\n'));
 	if (!tmp)
 		return (0);
 	i = 0;
